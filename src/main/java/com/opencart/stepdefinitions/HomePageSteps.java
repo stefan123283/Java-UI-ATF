@@ -20,5 +20,10 @@ public class HomePageSteps {
         homePage.navigateToRegisterPage();
     }
 
+    @And("The Login Page is accessed")
+    public void theLoginPageIsAccessed(){
+        homePage.navigateToLoginPage();
+    }
+
 
 }
