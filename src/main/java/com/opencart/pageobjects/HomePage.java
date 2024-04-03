@@ -11,4 +11,9 @@ public class HomePage extends Page {
         myAccountIcon.click();
         registerBtn.click();
     }
+
+    public void navigateToLoginPage() {
+        myAccountIcon.click();
+        loginBtn.click();
+    }
 }
