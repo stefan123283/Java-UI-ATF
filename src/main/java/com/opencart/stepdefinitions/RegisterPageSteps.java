@@ -12,11 +12,6 @@ public class RegisterPageSteps {
     WebDriver driver = DriverManager.getInstance().getDriver();
     RegisterPage registerPage = new RegisterPage(driver);
 
-    @When("Register Page is populated with valid random data")
-    public void registerPageIsPopulatedWithValidRandomData() {
-        registerPage.fillInTheRegisterForm(FakeDataManager.generateRandomFirstname(), FakeDataManager.generateRandomLastname(), FakeDataManager.generateRandomEmail(), FakeDataManager.generateRandomPhoneNumber(), FakeDataManager.generateRandomPassword());
-    }
-
     @When("Register Page is populated with the following data:")
     public void registerPageIsPopulatedWithTheFollowingData(Map<String, String> userDetailsMap) {
         String firstName = userDetailsMap.get("firstName");

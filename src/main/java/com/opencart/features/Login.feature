@@ -1,11 +1,11 @@
 Feature: Login Flow Test Suite
 
   Background:
-    Given The "https://demo-opencart.ru/" link is accessed
+    Given The defined web address is accessed
 
   @Smoke2
   Scenario Outline: Successful login with valid data
-    And The Login Page is accessed
+    And The "loginBtn" from "LoginPage" is clicked
     When The Login Page is populated with the following data:
       | <email>    |
       | <password> |
