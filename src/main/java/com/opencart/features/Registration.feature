@@ -1,11 +1,10 @@
 Feature: Register Flow Test Suite
 
   Background:
-    Given The defined web address is accessed
+    Given The defined url + "index.php?route=account/register" end part is accessed
 
   @Smoke1
   Scenario Outline: Successful register with valid attributes
-    And The "registerBtn" from "HomePage" is clicked
     When Register Page is populated with the following data:
       | firstName   | <firstName>   |
       | lastName    | <lastName>    |
@@ -20,7 +19,6 @@ Feature: Register Flow Test Suite
 
   @Test1
   Scenario Outline: Unsuccessful register with invalid <attribute>
-    And The "registerBtn" from "HomePage" is clicked
     When Register Page is populated with the following data:
       | firstName   | <firstName>   |
       | lastName    | <lastName>    |

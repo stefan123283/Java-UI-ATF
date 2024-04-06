@@ -1,32 +1,24 @@
 package com.opencart.stepdefinitions;
 
 import com.opencart.managers.DriverManager;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 public class Hooks {
+    private static int counter = 1;
+    private static final Logger logger = LogManager.getLogger(Hooks.class);
 
-    private static int counter = 0;
-
-    @BeforeAll
-    public static void beforeAll() {
-        System.out.println("The test suite execution has started.");
-    }
-
-    @BeforeEach
+    @Before
     public void beforeEach() {
-        System.out.println("The execution of test " + counter++ + " has started");
+        logger.log(Level.INFO, "The execution of test " + counter++ + " has started");
     }
 
-    @AfterEach
+    @After
     public void afterEach() {
         DriverManager.getInstance().quitTheDriver();
     }
 
-    @AfterAll
-    public static void afterAll() {
-        System.out.println("The test suite execution has ended.");
-    }
 }

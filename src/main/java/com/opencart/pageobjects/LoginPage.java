@@ -19,7 +19,6 @@ public class LoginPage extends Page {
     public void fillInTheLoginForm(String email, String password) {
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
-        loginBtn.click();
     }
 
 

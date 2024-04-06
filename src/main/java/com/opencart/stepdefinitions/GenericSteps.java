@@ -2,6 +2,7 @@ package com.opencart.stepdefinitions;
 
 import com.opencart.managers.ConfigReaderManager;
 import com.opencart.managers.DriverManager;
+import com.opencart.managers.ExplicitWaitManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,9 +16,9 @@ import java.lang.reflect.InvocationTargetException;
 public class GenericSteps {
     WebDriver driver = DriverManager.getInstance().getDriver();
 
-    @Given("The defined web address is accessed")
-    public void theLinkIsAccessed() {
-        driver.get(ConfigReaderManager.getProperty("url"));
+    @Given("The defined url + {string} end part is accessed")
+    public void theLinkIsAccessed(String endPart) {
+        driver.get(ConfigReaderManager.getProperty("url") + endPart);
     }
 
     @And("The {string} from {string} is clicked")
@@ -27,6 +28,8 @@ public class GenericSteps {
             Field element = classInstance.getDeclaredField(elementName);
             element.setAccessible(true);
             WebElement webElement = (WebElement) element.get(classInstance.getConstructor(WebDriver.class).newInstance(driver));
+            ExplicitWaitManager.waitTillTheElementIsVisible(webElement);
+            ExplicitWaitManager.waitTillTheElementIsClickable(webElement);
             webElement.click();
         } catch (ClassNotFoundException | NoSuchFieldException | NoSuchMethodException | InstantiationException |
                  IllegalAccessException |
