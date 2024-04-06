@@ -1,5 +1,8 @@
 package com.opencart.managers;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -7,33 +10,39 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverManager {
     private static String webDriverType = ConfigReaderManager.getProperty("browserType");
     private static DriverManager instance;
     private WebDriver driver;
+    private static final Logger logger = LogManager.getLogger(DriverManager.class);
 
     private DriverManager() {
         switch (webDriverType.toUpperCase()) {
             case "CHROME":
                 driver = new ChromeDriver();
-                System.out.println("The Chrome driver was initiated");
+                logger.log(Level.INFO, "The Chrome driver was initiated");
                 break;
             case "FIREFOX":
                 driver = new FirefoxDriver();
-                System.out.println("The Firefox driver was initiated");
+                logger.log(Level.INFO, "The Firefox driver was initiated");
                 break;
             case "EDGE":
                 EdgeOptions options = new EdgeOptions();
                 options.addArguments("--incognito");
                 driver = new EdgeDriver(options);
-                System.out.println("The Edge driver was initiated");
+                logger.log(Level.INFO, "The Edge driver was initiated");
                 break;
             case "SAFARI":
                 driver = new SafariDriver();
-                System.out.println("The Safari driver was initiated");
+                logger.log(Level.INFO, "The Safari driver was initiated");
             default:
-                System.out.println("There is not defined such a driver: " + webDriverType);
+                logger.log(Level.INFO, "There is not defined such a driver: " + webDriverType);
         }
+
+        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(ConfigReaderManager.getProperty("pageLoadValue")), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigReaderManager.getProperty("implicitWaitValue")), TimeUnit.SECONDS);
     }
 
     public static DriverManager getInstance() {
@@ -50,9 +59,10 @@ public class DriverManager {
         return driver;
     }
 
-    public void quitTheDriver(){
+    public void quitTheDriver() {
         driver.quit();
         driver = null;
         instance = null;
     }
+
 }

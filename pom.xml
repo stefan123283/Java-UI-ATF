@@ -13,7 +13,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.18.1</selenium.version>
+        <javafaker.version>1.0.2</javafaker.version>
         <junit.version>5.10.2</junit.version>
+        <cucumber.version>7.16.1</cucumber.version>
+        <log4j.version>2.23.1</log4j.version>
     </properties>
 
     <dependencies>
@@ -57,7 +60,7 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <version>${javafaker.version}</version>
         </dependency>
 
         <dependency>
@@ -69,26 +72,31 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
-            <scope>test</scope>
+            <version>${junit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.16.1</version>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-core</artifactId>
-            <version>7.16.1</version>
+            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.16.1</version>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
     </dependencies>

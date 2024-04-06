@@ -7,13 +7,4 @@ public class HomePage extends Page {
         super(driver);
     }
 
-    public void navigateToRegisterPage() {
-        myAccountIcon.click();
-        registerBtn.click();
-    }
-
-    public void navigateToLoginPage() {
-        myAccountIcon.click();
-        loginBtn.click();
-    }
 }
